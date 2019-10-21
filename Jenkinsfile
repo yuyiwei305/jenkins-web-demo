@@ -63,7 +63,7 @@ pipeline {
 
                     echo ${GIT_TAG}
 
-                    sed -i "/.*options/a    - ${GIT_TAG}"  test.yaml
+                    sed -i "/.*options/a    - ${GIT_TAG}"  questions.yaml
 
                     cat questions.yaml
 
