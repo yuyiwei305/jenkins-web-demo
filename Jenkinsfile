@@ -71,6 +71,12 @@ pipeline {
 
                     cat values.yaml
 
+                    git add .
+
+                    git commit -m " sorce git tag ${GIT_TAG} " 
+
+                    git push 
+
 
     			   """
 				}
