@@ -60,10 +60,15 @@ pipeline {
     			    git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@${REMOTE_HELM_CHART_REPOSITORY_URL}
 
     			    cd rancher_catalog/${HELM_PZROJECT_NAME}
-
-                            ls
                     
-    			    pwd
+                    tag='"${GIT_TSG}"'
+
+                    echo $tag
+
+                    sed -i "/.*options/a \ \ \ \ \  - $tag"  questions.yaml
+
+                    cat questions.yaml
+
 
     			   """
 				}
