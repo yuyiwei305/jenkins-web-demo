@@ -65,7 +65,7 @@ pipeline {
 
                     echo $tag
 
-                    sed -i "/.*options/a \ \ \ \ \  - $tag"  questions.yaml
+                    sed -i '/.*options/a"    - $tag"'  questions.yaml
 
                     cat questions.yaml
 
