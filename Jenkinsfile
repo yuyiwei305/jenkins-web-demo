@@ -61,9 +61,7 @@ pipeline {
 
     			    cd rancher_catalog/${HELM_PZROJECT_NAME}
 
-                    tag=${GIT_TAG}
-
-                    echo $tag
+                    echo ${GIT_TAG}
 
                     cat questions.yaml
 
