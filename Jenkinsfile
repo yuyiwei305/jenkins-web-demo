@@ -8,6 +8,8 @@ pipeline {
         REMOTE_HELM_CHART_REPOSITORY_GITHUB_URL="github.com/yuyiwei305/bookinfo-demo"
         GIT_TAG = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
         PROJECT_NAME =  "web-demo"
+        HELM_PZROJECT_NAME = "jenkins-web-demo"
+        
   }
     stages {
 
@@ -44,7 +46,7 @@ pipeline {
     			    docker login ${DOCKER_REPOSITORY} -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
 
 
-                    docker push ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${GIT_TAG}
+                            docker push ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${GIT_TAG}
 
     			   """
 				}
@@ -57,8 +59,10 @@ pipeline {
     			sh """
     			    git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@${REMOTE_HELM_CHART_REPOSITORY_URL}
 
-    			    ls
+    			    cd rancher_catalog/${HELM_PZROJECT_NAME}
 
+                            ls
+                    
     			    pwd
 
     			   """
