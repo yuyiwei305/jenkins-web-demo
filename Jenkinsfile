@@ -63,7 +63,7 @@ pipeline {
 
                     tag=${GIT_TAG}
 
-                    echo "$tag"
+                    echo $tag
 
                     cat questions.yaml
 
