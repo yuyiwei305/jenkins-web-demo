@@ -65,7 +65,11 @@ pipeline {
 
                     sed -i "/.*options/a \\ \\ \\ \\ \\  - \\"${GIT_TAG}\\""  questions.yaml
 
+                    sed -i "s/.*tag.*/    tag: \\"${GIT_TAG}\\"/g"  values.yaml
+
                     cat questions.yaml
+
+                    cat values.yaml
 
 
     			   """
