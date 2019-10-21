@@ -61,7 +61,7 @@ pipeline {
 
     			    cd rancher_catalog/${HELM_PZROJECT_NAME}
 
-                    sed -i "/.*options/a \ \ \ \ \  - '${GIT_TAG}' "   questions.yaml
+                    sed -i "/.*options/a \ \ \ \ \  - "${GIT_TAG}"" "   questions.yaml
 
                     cat questions.yaml
 
