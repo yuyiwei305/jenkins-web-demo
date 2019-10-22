@@ -8,7 +8,7 @@ pipeline {
         REMOTE_HELM_CHART_REPOSITORY_GITHUB_URL="github.com/yuyiwei305/bookinfo-demo"
         GIT_TAG = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
         PROJECT_NAME =  "web-demo"
-        HELM_PZROJECT_NAME = "jenkins-web-demo"
+        HELM_PROJECT_NAME = "jenkins-web-demo"
         DATE = sh(returnStdout: true, script: 'date "+%Y-%m-%d"').trim()
         
   }
