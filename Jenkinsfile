@@ -9,6 +9,7 @@ pipeline {
         GIT_TAG = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
         PROJECT_NAME =  "web-demo"
         HELM_PZROJECT_NAME = "jenkins-web-demo"
+        DATE = sh(returnStdout: true, script: 'date "+%Y-%m-%d"').trim()
         
   }
     stages {
@@ -30,7 +31,7 @@ pipeline {
             steps{
             echo "3.Build Docker Image Stage"
             sh """
-               docker build -t ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${GIT_TAG} .
+               docker build -t ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${DATE}-${GIT_TAG} .
 
                """
             }   
@@ -46,7 +47,7 @@ pipeline {
     			    docker login ${DOCKER_REPOSITORY} -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
 
 
-                            docker push ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${GIT_TAG}
+                            docker push ${DOCKER_REPOSITORY_URL}/${PROJECT_NAME}:${DATE}-${GIT_TAG}
 
     			   """
 				}
@@ -63,9 +64,9 @@ pipeline {
 
                     echo ${GIT_TAG}
 
-                    sed -i "/.*options/a \\ \\ \\ \\ \\  - \\"${GIT_TAG}\\""  questions.yaml
+                    sed -i "/.*options/a \\ \\ \\ \\ \\  - \\"${DATE}-${GIT_TAG}\\""  questions.yaml
 
-                    sed -i "s/.*tag.*/    tag: \\"${GIT_TAG}\\"/g"  values.yaml
+                    sed -i "s/.*tag.*/    tag: \\"${DATE}-${GIT_TAG}\\"/g"  values.yaml
 
                     cat questions.yaml
 
@@ -73,7 +74,7 @@ pipeline {
 
                     git add .
 
-                    git commit -m " sorce git tag ${GIT_TAG} " 
+                    git commit -m " sorce git tag ${DATE}-${GIT_TAG} " 
 
                     git push 
 
