@@ -60,7 +60,7 @@ pipeline {
     			sh """
     			   
 
-                    git clone https://${REMOTE_HELM_CHART_REPOSITORY_URL}
+                    git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@${REMOTE_HELM_CHART_REPOSITORY_URL}
 
     			    cd rancher_catalog/${HELM_PROJECT_NAME}
 
