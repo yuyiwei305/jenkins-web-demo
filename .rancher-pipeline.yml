@@ -1,0 +1,11 @@
+stages:
+- name: BuildAndPush
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: visionyuyu/web-demo:${CICD_GIT_COMMIT}
+      pushRemote: true
+      registry: index.docker.io
+timeout: 60
+notification: {}
